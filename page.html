@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+<style>
+.grid-container{
+	display:grid;
+	grid-template-columns:25% 25% 25% 25%;
+	grid-gap:10px;
+	padding:20px
+}
+.grid-container >div{
+	background-color:#804000;
+	text-align:center;
+	padding:10px 10px;
+	font-size:20px;
+	border-style:outset;
+	border-color:#804000;
+}
+input[type=text] {
+    width: 60%;
+    padding: 0 5px;
+    height: 20px;
+    border: inset #f2f2f2;
+    background: #f6f6f6;
+    color: #202124;
+    font-size: 15px;
+    line-height: 15px;
+    border-radius: 5px;
+    vertical-align:bottom;
+}
+input[type=button]{
+	width:30%;
+	border-radius:20px;
+	border: outset;
+	line-height:15px;
+	height:25px;
+	font-size:15px;
+	padding:0 5px;
+	vertical-align:bottom;
+}
+img{
+	max-width:95%;
+	border-style:inset;
+	align:center;
+}
+body{
+	background-color:#206520;
+}
+</style>
+	<script>
+		var list = ["轻装上阵","指鹿为马","带余除法"];
+		function process(id){
+			var x = document.getElementById(id);
+			if(x.value == list[Number(id)-1]){
+				alert('correct');
+			}else{
+				alert('wrong');
+			}
+			x.value='';
+			document.getElementById('d'+id).style["background-color"]="green";
+			document.getElementById('d'+id).style["border-color"]="green"
+		}
+	</script>
+		<title>MYTH OF LIFE</title>
+	</head>
+	<body>
+		<h1 text-align="center" align="center" style="color:#ffff20;text-shadow:#ffff20 0px 0px 2px;font-size:50px;">谜语</h1>
+		<div class="grid-container">
+			<div id='d1'>
+				<img src="https://a4001234567.github.io/images/48BD18D0-908F-420B-A7FA-0C03E3DCE220.jpeg",alt = "loading"/>
+				<input type="text" id = '1' value = ''/>
+				<input type="button" onclick="process('1');" value="检查"/>
+			</div>
+			<div id='d2'>
+				<img src="https://a4001234567.github.io/images/6450F597-2059-4D13-BBEC-F3CA6657D385.jpeg",alt = "loading"/>
+				<input type="text" id = '2' value = ''/>
+				<input type="button" onclick="process('2');" value="检查"/>
+			</div>
+			<div id='d3'>
+
+
+				<img src="https://a4001234567.github.io/images/13AD0C89-CD10-46BD-9871-0B6BCF05209B.jpeg",alt = "loading"/>
+				<input type="text" id = '3' value = ''/>
+				<input type="button" onclick="process('3');" value="检查"/>
+			</div>
+			<div><h1>To</h1></div>
+			<div><h1>Be</h1></div>
+			<div><h1>Continued</h1></div>
+			<div><h1>?</h1></div>
+		</div>
+	</body>
+</html>
