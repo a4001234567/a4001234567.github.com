@@ -53,12 +53,12 @@ body{
 			var x = document.getElementById(id);
 			if(x.value == list[Number(id)]){
 				alert('correct');
+				document.getElementById('d'+id).style["background-color"]="green";
+				document.getElementById('d'+id).style["border-color"]="green"
 			}else{
 				alert('wrong');
 			}
 			x.value='';
-			document.getElementById('d'+id).style["background-color"]="green";
-			document.getElementById('d'+id).style["border-color"]="green"
 		}
 	</script>
 		<title>MYTH OF LIFE</title>
