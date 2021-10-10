@@ -6,22 +6,37 @@
 	display:grid;
 	grid-template-columns:23.5% 23.5% 23.5% 23.5%;
 	grid-gap:4% 2%;
+	padding:80px 0;
 }
 .grid-container >div{
 	align:center;
-	background-color:#804000;
+	background-color:#a2cdcd;
 	text-align:center;
 	padding:10px 10px;
 	font-size:20px;
 	border-style:outset;
-	border-color:#804000;
+	border-color:#a2cdcd;
 	border-radius:8px;
+}
+.heading{
+	top:0;
+	left:0;
+	margin:0;
+	padding:0;
+	border:none;
+	background-color:#80cc4f;
+	text-vertical-align:center;
+	height:80px;
+	width:100%;
+	vertical-align:top;
+	position:fixed;
+	line-height:0px;
 }
 input[type=text] {
     width: 60%;
     padding: 0 5px;
-    height: 20px;
-    border: inset #804000;
+    height: 25px;
+    border: none;
     background: #f6f6f6;
     color: #202124;
     font-size: 15px;
@@ -32,10 +47,11 @@ input[type=text] {
 input[type=button]{
 	width:30%;
 	border-radius:20px;
-	border: outset #804000;
+	border: none;
 	line-height:15px;
 	height:25px;
 	font-size:15px;
+	color:#8fd166;
 	padding:0 5px;
 	vertical-align:bottom;
 }
@@ -46,7 +62,7 @@ img{
 	align:center;
 }
 body{
-	background-color:#206520;
+	background-color:#fee1af;
 }
 </style>
 	<script>
@@ -66,7 +82,9 @@ body{
 		<title>MYTH OF LIFE</title>
 	</head>
 	<body>
-		<h1 text-align="center" align="center" style="color:#ffff20;text-shadow:#ffff20 0px 0px 2px;font-size:50px;">谜语</h1>
+		<div class='heading'>
+			<h1 align="left" style="color:#035984;text-shadow:#035984 0px 0px 2px;font-size:60px;">谜语</h1>
+		</div>
 		<div class="grid-container">
 			<div id='d0'>
 				<img src="https://a4001234567.github.io/images/48BD18D0-908F-420B-A7FA-0C03E3DCE220.jpeg",alt = "loading"/>
