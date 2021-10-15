@@ -1281,9 +1281,12 @@ to{transform:rotateY(90deg) rotateX(-337.5deg) translateX(910px);
 #container
 {
 -webkit-perspective:200;
-width:500px;
-height:500px;
-background-color:red;
+perspective:200;
+max-width:95%;
+border-radius: 5px;
+border-style:inset #804000;
+align:center;
+background-color:black;
 overflow:hidden;
 }
 #aa{position:absolute;
