@@ -1282,10 +1282,7 @@ to{transform:rotateY(90deg) rotateX(-337.5deg) translateX(910px);
 {
 -webkit-perspective:200;
 perspective:200;
-max-width:95%;
-border-radius: 5px;
-border-style:inset #804000;
-align:center;
+width:95%;
 background-color:black;
 overflow:hidden;
 }
