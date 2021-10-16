@@ -1282,8 +1282,8 @@ to{transform:rotateY(90deg) rotateX(-337.5deg) translateX(910px);
 {
 -webkit-perspective:200;
 perspective:200;
-width:2000px;
-height:2000px;
+width:500px;
+height:500px;
 background-color:black;
 overflow:hidden;
 }
