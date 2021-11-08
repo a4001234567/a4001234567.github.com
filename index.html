@@ -1,14 +1,32 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-  <meta charset="utf-8">
-<title>“青年大学习”第十二季第六期</title>
-</head>
-
-<body>
-  <div align="center">
-    <a href="https://h5.cyol.com/special/daxuexi/byw1m1kn1s/index.html">
-      <img src="https://h5.cyol.com/special/daxuexi/byw1m1kn1s/images/end.jpg" width = "100%" height = "100%"/>
-    </a>
-  </div>
+<!DOCTYPE html> 
+<html lang="en" dir="ltr"> 
+<head> 
+  <meta charset="utf-8"> 
+<title>“青年大学习”第十二季第六期</title> 
+</head> 
+ 
+<body> 
+    <a href="https://h5.cyol.com/special/daxuexi/byw1m1kn1s/index.html" position = "absolute" top = 0 left = 0 margin = 0 
+padding = 0> 
+            <img id = "my_img" src="https://h5.cyol.com/special/daxuexi/byw1m1kn1s/images/end.jpg" padding = "0" margin = 
+"0" position = "absolute" top = "0" left = 0 /> 
+    </a> 
+ 
+    <script> 
+var preW = 1,preH=1; 
+function bus(){ 
+    var nW = window.innerWidth,nH = window.innerHeight; 
+        var t = document.getElementById("my_img"); 
+    if (preW!=nW|preH!=nH){ 
+            preW = Math.sqrt(Math.sqrt(Math.sqrt(nW*preW*preW*preW*preW*preW*preW*preW))); 
+            preH = Math.sqrt(Math.sqrt(Math.sqrt(nH*preH*preH*preH*preH*preH*preH*preH))); 
+    t.style.width=preW+'px'; 
+    t.style.height=preH+'px'; 
+    } 
+        t.style.position="absolute"; 
+        t.style.top = 0; 
+        t.style.left = 0; 
+    } 
+    setInterval(bus,10); 
+    </script> 
 </body>
