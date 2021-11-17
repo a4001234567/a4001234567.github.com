@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <title>preview</title>
+   </head>
+	
+   <body>
+	  <textarea id = 'command'></textarea>
+	  <input type = 'button' onclick = 'proc_command();' value = 'Execute'/>
+      <script>
+		  var element_list = [];
+		// Rect X Y W H color
+		// Drawing a rectangle with its upper-left corner at the position x,y, with its size w*h, filled with color
+		function rect(X,Y,W,H,color){
+        		var t=document.createElement("div");
+        		t.style.position="absolute";
+        		t.style.left=X+'px';
+        		t.style.top=Y+'px';
+        		t.style.width=W+'px';
+        		t.style.height=H+'px';
+		        t.style.backgroundColor=color;
+        		document.body.appendChild(t);
+        		return t;
+		}
+		function circ(X,Y,r,color){
+        var t=document.createElement("div");
+        t.style.position="absolute";
+        t.style.left=X+'px';
+        t.style.top=Y+'px';
+        t.style.width=2*parseInt(r)+'px';
+        t.style.height=2*parseInt(r)+'px';
+        t.style.borderRadius=r+'px';
+        t.style.backgroundColor=color;
+        document.body.appendChild(t);
+        return t;
+}
+// CLRS
+// clear all drawn object
+function clrs(){
+        for (var i=0;i<element_list.length;++i){
+                var temp = element_list[i];
+                temp.remove();
+        }
+        element_list=[];
+        return null;
+}
+// Text X Y size color content
+// Display content at X,Y with size and color
+function text(X,Y,size,color,content){
+        var cont = document.createElement("div");
+        cont.style.position="absolute";
+        cont.style.left=X+'px';
+        cont.style.top=Y+'px';
+        cont.style.color=color;
+        cont.style.fontSize=size+'px';
+        var t = document.createTextNode(content);
+        cont.appendChild(t)
+
+        document.body.appendChild(cont);
+        return cont;
+}
+// Tri X Y L R H theta color
+// Draw a triangle
+function tri(X,Y,L,R,H,theta,color){
+        var t=document.createElement("div");
+        t.style.position="absolute";
+        t.style.left=X+'px';
+        t.style.top=Y+'px';
+        t.style.borderBottom=H+"px solid "+color;
+        t.style.borderLeft=L+"px solid transparent";
+        t.style.borderRight=R+"px solid transparent";
+        t.style.webkitTransform = "rotate("+theta+"deg)";
+        t.style.mozTransform = "rotate("+theta+"deg)";
+        t.style.msTransform = "rotate("+theta+"deg)";
+        t.style.oTransform = "rotate("+theta+"deg)";
+        t.style.transform = "rotate("+theta+"deg)";
+        document.body.appendChild(t);
+        return t;
+}
+// Title msg
+// for changing the title of the webpage to {msg}
+function title(msg){
+        document.title = msg;
+        	return null;
+		}
+		  function proc_command(){
+		  	var command = document.getElementById('command').value;
+		  	var a = command.split('\n');
+			var commands = [];
+			var j;
+		  	for (j in a){
+				var cur_command = a[j];
+				var splited = cur_command.split(' ');
+				if (splited.length > 1){commands.push([splited[0],splited.slice(1)]);}
+				else {commands.push([splited[0],]);}
+			}
+			document.getElementById('command').value = '';
+			for (var i=0;i<commands.length;++i){
+                var command=commands[i];
+                var type=command[0];
+                switch(type){
+                        case "Rect":
+                                element_list.push(rect(command[1][0],command[1][1],command[1][2],command[1][3],command[1][4]));
+                                break;
+						case "Circ":
+                                element_list.push(circ(command[1][0],command[1][1],command[1][2],command[1][3]));
+                                break;
+                        case "CLRS":
+                                clrs();
+                                break;
+                        case "Text":
+                                element_list.push(text(command[1][0],command[1][1],command[1][2],command[1][3],command[1][4]));
+                                break;
+                        case "Tri":
+                                element_list.push(tri(command[1][0],command[1][1],command[1][2],command[1][3],command[1][4],command[1][5],command[1][6]));
+                                break;
+                        case "Alert":
+                                alert(command[1][0]);
+                                break;
+                        case "Title":
+                                title(command[1][0]);
+                                break;
+                }
+        	}
+		  }  
+	   </script>
+   </body>
+</html> 
+
