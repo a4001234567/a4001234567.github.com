@@ -339,7 +339,7 @@
                            document.getElementById("wind_speed").value = v;
                            document.getElementById("feel_like").innerHTML = at;
                            if (cond == "阴")document.getElementById("sun").style.opacity=0.75;
-                           if (cond == "雾"||cond == "霾")document.getElementById("container").style.filter="blur(.5px) saturate(80%)";
+                           if (cond == "雾"||cond == "霾")document.getElementById("container").style.filter="blur(1px) saturate(60%)";
                            for (var i = 0;i<cond.length;++i){
                                    if (cond[i] == "雨"||cond[i] == "雪"){
                                            for (var idx = 1;idx<9;++idx){
