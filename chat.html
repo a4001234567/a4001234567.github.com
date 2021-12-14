@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+        <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
+                <title>sexy pistol</title>
+                <style>
+@keyframes left_to_right{
+        0%{right:-100vw;visibility:visible;}
+        80%{right:100vw;visibility:visible;}
+        81%{visibility:hidden;}
+        100%{visibility:hidden;}
+}
+.bullet {
+        position:absolute;
+        visibility:hidden;
+        animation:left_to_right linear 5s;
+        overflow:hidden;
+        -webkit-line-clamp: 1;
+        width: 100vw;
+}
+#name {
+        border:inset 3px;
+        border-radius:5px;
+        width:40px;
+        height:30px;
+        background-color:#e0c0c0;
+        transition:width 1s;
+}
+#name:focus{
+        border:inset 3px;
+        border-radius:5px;
+        width:80px;
+        height:30px;
+        background-color:#e0c0c0;
+        transition:width 1s;
+}
+#content{
+        margin:5px;
+        border:inset 3px;
+        border-radius:5px;
+        width:15%;
+        height:30px;
+        background-color:#e0c0c0;
+        transition:width 1s;
+        vertical-align:center;
+}
+                   #content:focus{
+                           border:inset 3px;
+                                   border-radius:5px;
+                           width:35%;
+                           height:30px;
+                           background-color:#e0c0c0;
+                           transition:width 1s;
+                   }
+                   #panel {
+                           display:flex;
+                           justify-content:center;
+                           align-items:center;
+                           position:fixed;
+                           background-color:#330055;
+                           top:0;
+                           left:0px;
+                           width:100%;
+                           height:50px;
+                   }
+                   #submit {
+                           margin:5px;
+                           border:outset;
+                           border-radius:5px;
+                           color: white;
+                           color:#ffffaa;
+                           background-color:#a03030;
+                           width:60px;
+                                 height:30px;
+                           font-size:13px;
+                   }
+                   input::-webkit-input-placeholder{
+                           color:#3040ff;
+                   }
+                </style>
+        </head>
+        <body>
+                <div id = 'panel'>
+                        <input type = text value = '' id = 'name' placeholder = "姓名"/>
+                        <input type = text value = '' id = 'content' placeholder = "弹幕内容"/>
+                        <button id = 'submit' onclick = "send();">发送</button>
+                </div>
+                <script>
+                        function send(){
+                                var name = document.getElementById('name').value;
+                                var content = document.getElementById('content').value;
+                                if (content.length == 0) {alert('感觉空空的');return;}
+                                document.getElementById('content').value = '';
+                                if (name){post('NEW '+name+':'+content);}
+                                else{post('NEW '+content);}
+                                return;
+                        }
+                        function post(content){
+                                var httpRequest = new XMLHttpRequest();
+                                httpRequest.open("POST","http://116.62.169.167:81",true);
+                                httpRequest.send(content);
+                                httpRequest.onreadystatechange=function(){
+                                        if(httpRequest.readyState == 4 && httpRequest.status == 200){
+                                                display(JSON.parse(httpRequest.responseText));
+                                        }
+                                };
+                        }
+                        var last_bullet = '';
+                        function display(magazine){
+                                for (var i=0;i<magazine.length;++i){
+                                        if (magazine[i] != last_bullet){
+                                                put_text(magazine[i]);
+                                        }
+                                        else {break;}
+                                }
+                                last_bullet = magazine[0];
+                        }
+                        function put_text(content){
+                                var cont = document.createElement("h1");
+                                var bullet = document.createTextNode(content);
+                                cont.appendChild(bullet);
+                                cont.className = 'bullet';
+                                cont.style.top = 10+Math.random()*80+'vh';
+                                cont.style.animationDelay = Math.random()*4+'s';                   
+                                document.body.appendChild(cont);
+                                setTimeout(function(){cont.remove();},10000);
+                                return;
+                        }
+                        setInterval("post('null')",1000);
+                </script>
+        </body>
+</html>
