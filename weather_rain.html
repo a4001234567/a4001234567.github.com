@@ -1,0 +1,374 @@
+!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <title>NK Weather</title>
+           <style>
+                   @keyframes left_to_right{
+                           from{left:0%;}
+                           to{left:100%;}
+                   }
+                   @keyframes drop1{
+                           from{left:0%;top:0%;}
+                           to{left:25%;top:100%;}
+                   }
+                   @keyframes drop2{
+                           from{left:25%;top:0%;}
+                           to{left:50%;top:100%;}
+                   }
+                   @keyframes drop3{
+                           from{left:50%;top:0%;}
+                           to{left:75%;top:100%;}
+                   }
+                   @keyframes drop4{
+                           from{left:75%;top:0%;}
+                           to{left:100%;top:100%;}
+                   }
+                   #container{
+                           overflow:hidden;
+                           border-radius:15px;
+                           background-color:#ffcaca;
+                           text-align:center;
+                           line-height:16vh;
+                           vertical-align:bottom;
+                           justify-content:center;
+                           position:fixed;
+                           width:100vw;
+                           height:100vh;
+                           padding:0;
+                                   font-size:42px;
+                           margin:0;
+                                   left:0;
+                                           top:0;
+                   }
+                   #temperature{
+                           border:None;
+                           border-bottom:solid 1px;
+                           width:60px;
+                           margin:5px;
+                           padding:0px 5px;
+                           border-radius:0px;
+                           font-size:42px;
+                           text-align:center;
+                           background-color:transparent;
+                   }
+                   #relative_humidity{
+                           border:None;
+                           border-bottom:solid 1px;
+                           margin:5px;
+                           padding:0px 5px;
+                           width:60px;
+                           border-radius:0px;
+                           font-size:42px;
+                           text-align:center;
+                           background-color:transparent;
+                   }
+                   #wind_speed{
+                           border:None;
+                           border-bottom:solid 1px;
+                           width:60px;
+                           margin:5px;
+                           padding:0px 5px;
+                           border-radius:0px;
+                           font-size:42px;
+                           text-align:center;
+                           background-color:transparent;
+                   }
+                   .unit{
+                           margin:0;
+                           padding:0;
+                           display:inline-block;
+                           width:20px;
+                           text-align:right;
+                   }
+                   #feel_like{
+                           width:60px;
+                           margin:5px;
+                           padding:5px;
+                           text-align:center;
+                           display:inline-block;
+                   }
+                   #thickness{
+                           width:60px;
+                           margin:5px;
+                           padding:0;
+                           display:inline-block;
+                           text-align:center;
+                   }
+                   #circ1{
+                           position:absolute;
+                           left:-14vw;
+                           bottom:-45vw;
+                           border-radius:40vw;
+                           width:80vw;
+                           height:80vw;
+                           border:None;
+                           background-color:#70a070;
+                           z-index:-2;
+                   }
+                   #circ2{
+                           position:absolute;
+                           right:-47vw;
+                           bottom:-70vw;
+                           border-radius:50vw;
+                           width:100vw;
+                           height:100vw;
+                           border:None;
+                           background-color:#70b090;
+                           z-index:-3;
+                   }
+                   #sun{
+                           position:absolute;
+                           left:-15vw;
+                           top:-15vw;
+                           border-radius:15vw;
+                           width:30vw;
+                           height:30vw;
+                           border:None;
+                           box-shadow:0 0 25px yellow;
+                           background-color:yellow;
+                           z-index:-5;
+                   }
+                   #cloud1{
+                           position:absolute;
+                           top:10vh;
+                           border-radius:5px;
+                           width:5vw;
+                           height:10px;
+                           background-color:white;
+                           opacity:0.75;
+                           animation:left_to_right 5s infinite linear;
+                           z-index:-4
+                   }
+                   #cloud2{
+                           position:absolute;
+                           top:9vh;
+                           border-radius:5px;
+                           left:-200px;
+                           width:5vw;
+                           height:10px;
+                           opacity:0.75;
+                           background-color:white;
+                           animation:left_to_right 10s infinite linear;
+                           z-index:-4;
+                           animation-delay:3s;
+                           -webkit-animation-delay:3s;
+                   }
+                   #cloud3{
+                           position:absolute;
+                           top:12vh;
+                           border-radius:5px;
+                           left:-200px;
+                           width:5vw;
+                           height:10px;
+                           opacity:0.75;
+                           background-color:white;
+                           animation:left_to_right 8s infinite linear;
+                           z-index:-4;
+                           animation-delay:7s;
+                           -webkit-animation-delay:7s;
+                   }
+                   #cloud4{
+                           position:absolute;
+                           top:13vh;
+                           border-radius:5px;
+                           left:-200px;
+                           width:5vw;
+                           height:10px;
+                           opacity:0.75;
+                           background-color:white;
+                           animation:left_to_right 8s infinite linear;
+                           z-index:-4;
+                           animation-delay:4s;
+                           -webkit-animation-delay:4s;
+                   }
+                   #rain_drop1{
+                           visibility:hidden;
+                           position:absolute;
+                           top:-30px;
+                           width:3px;
+                           height:20px;
+                           border-radius:1.5px;
+                           background-color:#3377bb;
+                           opacity:0.5;
+                           z-index:-6;
+                           animation:drop1 4s linear infinite;
+                           -webkit-transform:rotateZ(-15deg);
+                           transform:rotateZ(-15deg);
+                   }
+                   #rain_drop2{
+                           visibility:hidden;
+                           position:absolute;
+                           top:-30px;
+                           width:3px;
+                           height:20px;
+                           border-radius:1.5px;
+                           background-color:#3377bb;
+                           opacity:0.5;
+                           z-index:-6;
+                           animation:drop1 4s linear infinite;
+                           animation-delay: 2s;
+                           -webkit-transform:rotateZ(-15deg);
+                           transform:rotateZ(-15deg);
+                   }
+                   #rain_drop3{
+                           visibility:hidden;
+                           position:absolute;
+                           top:-30px;
+                           width:3px;
+                           height:20px;
+                           border-radius:1.5px;
+                           background-color:#3377bb;
+                           opacity:0.5;
+                           z-index:-6;
+                           animation:drop2 4s linear infinite;
+                           animation-delay:1s;
+                           -webkit-transform:rotateZ(-15deg);
+                           transform:rotateZ(-15deg);
+                   }
+                   #rain_drop4{
+                           visibility:hidden;
+                           position:absolute;
+                           top:-30px;
+                           width:3px;
+                           height:20px;
+                           border-radius:1.5px;
+                           background-color:#3377bb;
+                           opacity:0.5;
+                           z-index:-6;
+                           animation:drop2 4s linear infinite;
+                           animation-delay: 3s;
+                           -webkit-transform:rotateZ(-15deg);
+                           transform:rotateZ(-15deg);
+                   }
+                   #rain_drop5{
+                           visibility:hidden;
+                           position:absolute;
+                           top:-30px;
+                           width:3px;
+                           height:20px;
+                           border-radius:1.5px;
+                           background-color:#3377bb;
+                           opacity:0.5;
+                           z-index:-6;
+                           animation:drop3 4s linear infinite;
+                           animation-delay:1.5s;
+                           -webkit-transform:rotateZ(-15deg);
+                           transform:rotateZ(-15deg);
+                   }
+                   #rain_drop6{
+                           visibility:hidden;
+                           position:absolute;
+                           top:-30px;
+                           width:3px;
+                           height:20px;
+                           border-radius:1.5px;
+                           background-color:#3377bb;
+                           opacity:0.5;
+                           z-index:-6;
+                           animation:drop3 4s linear infinite;
+                           animation-delay: 2.8s;
+                           -webkit-transform:rotateZ(-15deg);
+                           transform:rotateZ(-15deg);
+                   }
+                   #rain_drop7{
+                           visibility:hidden;
+                           position:absolute;
+                           top:-30px;
+                           width:3px;
+                           height:20px;
+                           border-radius:1.5px;
+                           background-color:#3377bb;
+                           opacity:0.5;
+                           z-index:-6;
+                           animation:drop4 4s linear infinite;
+                           animation-delay:0.2s;
+                           -webkit-transform:rotateZ(-15deg);
+                           transform:rotateZ(-15deg);
+                   }
+                   #rain_drop8{
+                           visibility:hidden;
+                           position:absolute;
+                           top:-30px;
+                           width:3px;
+                           height:20px;
+                           border-radius:1.5px;
+                           background-color:#3377bb;
+                           opacity:0.5;
+                           z-index:-6;
+                           animation:drop4 4s linear infinite;
+                           animation-delay: 3.2s;
+                           -webkit-transform:rotateZ(-15deg);
+                           transform:rotateZ(-15deg);
+                   }
+           </style>
+   </head>
+        
+   <body><div id = "container">
+           <div id = "circ1"></div>
+           <div id = "circ2"></div>
+           <div id = "cloud1"></div>
+           <div id = "cloud2"></div>
+           <div id = "cloud3"></div>
+           <div id = "cloud4"></div>
+           <div id = "rain_drop1"></div>
+           <div id = "rain_drop2"></div>
+           <div id = "rain_drop3"></div>
+           <div id = "rain_drop4"></div>
+           <div id = "rain_drop5"></div>
+           <div id = "rain_drop6"></div>
+           <div id = "rain_drop7"></div>
+           <div id = "rain_drop8"></div>
+           <div id = "sun"></div>
+           温度：<input id = "temperature" type = 'number' placeholder = "温度"/><span class = 'unit'>℃</span><br/>
+           湿度：<input id = "relative_humidity" type = 'number' placeholder = "湿度"/><span class = 'unit'>%</span><br/>
+           风速：<input id = "wind_speed" type = 'number' placeholder = "风速"/><span class = 'unit'>m/s</span><br/>
+           体感：<div id = "feel_like">feel_like</div><span class = 'unit'>℃</span></br>
+           厚度：<div id = "thickness">sickness</div><span class = 'unit'>mm</span>
+           </div>
+           <script>
+                   function apply(stuff){
+                           var temp = stuff['HeWeather6'][0]['now'];
+                           var at = temp['fl'];
+                           var rh = temp['hum'];
+                           var t = temp['tmp'];
+                           var v = temp['wind_spd'];
+                           var cond = temp['cond_txt'];
+                           document.getElementById("temperature").value = t;
+                           document.getElementById("relative_humidity").value = rh;
+                           document.getElementById("wind_speed").value = v;
+                           document.getElementById("feel_like").innerHTML = at;
+                           if (cond == "阴")document.getElementById("sun").style.opacity=0.75;
+                           if (cond == "雾"||cond == "霾")document.getElementById("container").style.filter="blur(1px) saturate(60%)";
+                           for (var i = 0;i<cond.length;++i){
+                                   if (true){
+                                           for (var idx = 1;idx<9;++idx){
+                                                   document.getElementById("rain_drop"+idx).style.visibility = "visible";
+                                           }
+                                   }
+                           }
+                   }
+        function post(contentsus){
+                        var httpRequest = new XMLHttpRequest();
+                        httpRequest.open("POST","https://free-api.heweather.net/s6/weather/now?location=120104&key=db86a5196f304e52a4369818c5182e60",true);
+                        httpRequest.send();
+                        httpRequest.onreadystatechange=function(){
+                          if(httpRequest.readyState == 4 && httpRequest.status == 200){
+                                 apply(JSON.parse(httpRequest.responseText));
+                                 }
+                        };
+                }
+                   function calc(){
+                           var T = parseInt(document.getElementById("temperature").value);
+                           var v = parseInt(document.getElementById("wind_speed").value);
+                           var RH = parseInt(document.getElementById("relative_humidity").value);
+                           var e = RH*6.105/100*Math.exp(17.27*T/(237.15+T));
+                           var AT = 1.07*T+0.2*e-0.65*v-2.7;
+                           document.getElementById("feel_like").innerHTML = AT.toFixed(1);
+                           document.getElementById("thickness").innerHTML = (0.61*(25.8-AT)/(1-0.01165*v*v)).toFixed();
+                   }
+                post();
+                setInterval("calc()",100);
+           </script>
+   </body>
+</html>
