@@ -332,7 +332,7 @@
                            var at = temp['fl'];
                            var rh = temp['hum'];
                            var t = temp['tmp'];
-                           var v = temp['wind_spd'];
+                           var v = (temp['wind_spd']/3.6).toFixed();
                            var cond = temp['cond_txt'];
                            document.getElementById("temperature").value = t;
                            document.getElementById("relative_humidity").value = rh;
