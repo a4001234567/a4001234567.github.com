@@ -364,8 +364,9 @@
                            var RH = parseInt(document.getElementById("relative_humidity").value);
                            var e = RH*6.105/100*Math.exp(17.27*T/(237.15+T));
                            //var AT = 1.07*T+0.2*e-0.65*v-2.7;
-                           var AT = at;
-                           document.getElementById("feel_like").innerHTML = AT.toFixed(1);
+                           var AT = parseInt(at);
+                           if (AT < 0) document.getElementById("feel_like").innerHTML = AT.toFixed();
+                           else document.getElementById("feel_like").innerHTML = AT.toFixed(1);
                            document.getElementById("thickness").innerHTML = (0.61*(25.8-AT)/(1-0.01165*v*v)).toFixed();
                    }
                 post();
