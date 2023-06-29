@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="stylesheet" href="https://naozhong.net.cn/css/style.css?v=36">
+    <title>Study Club Time Zone</title>
+    <style>
+		@font-face {
+			font-family: 'EVA';
+			src: url('https://a4001234567.github.io/EVA-MATISSE_STANDARD.TTF') format('truetype');
+		}
+        body {
+            font-family: EVA, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .clocks {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .clock {
+            width: calc(50% - 20px);
+            margin: 10px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            color: #333;
+            font-size: 24px;
+            line-height: 1.5;
+        }
+        @media screen and (max-width: 480px) {
+            .clock {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>STUDY TIME ZONE</h1>
+    <div class="clocks">
+		<div class="clock">陈信瑜<div class="colored digit text-nowrap font-digit" id="cxy"></div></div>
+		<div class="clock">解相儒<div class="colored digit text-nowrap font-digit" id="xxr"></div></div>
+		<div class="clock">张曦<div class="colored digit text-nowrap font-digit" id="zx"></div></div>
+		<div class="clock">程加雨<div class="colored digit text-nowrap font-digit" id="cjy"></div></div>
+		<div class="clock">姜儀梵<div class="colored digit text-nowrap font-digit" id="jyf"></div></div>
+    </div>
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const timeZoneOffsets = {
+                cxy: 1,
+                xxr: 8,
+                zx: -4,
+                cjy: -4,
+                jyf: -7
+            };
+
+            for (const id in timeZoneOffsets) {
+                const offset = timeZoneOffsets[id];
+                const time = new Date(now.getTime() + (offset * 60 * 60 * 1000));
+                const hours = time.getUTCHours().toString().padStart(2, '0');
+                const minutes = time.getUTCMinutes().toString().padStart(2, '0');
+                const seconds = time.getUTCSeconds().toString().padStart(2, '0');
+                const formattedTime = `${hours}:${minutes}:${seconds}`;
+                document.getElementById(id).innerText = formattedTime;
+            }
+        }
+
+        updateTime();
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>
+
+        
