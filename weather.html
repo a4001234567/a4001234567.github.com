@@ -328,12 +328,12 @@
            </div>
            <script>
                    function apply(stuff){
-                           var temp = stuff['HeWeather6'][0]['now'];
-                           var at = temp['fl'];
-                           var rh = temp['hum'];
-                           var t = temp['tmp'];
-                           var v = temp['wind_spd'];
-                           var cond = temp['cond_txt'];
+                           var temp = stuff['now'];
+                           var at = temp['feelsLike'];
+                           var rh = temp['humidity'];
+                           var t = temp['temp'];
+                           var v = temp['windSpeed'];
+                           var cond = temp['text'];
                            document.getElementById("temperature").value = t;
                            document.getElementById("relative_humidity").value = rh;
                            document.getElementById("wind_speed").value = v;
@@ -350,7 +350,7 @@
                    }
         function post(contentsus){
                         var httpRequest = new XMLHttpRequest();
-                        httpRequest.open("POST","https://free-api.heweather.net/s6/weather/now?location=120104&key=00b38cba828149d1ad759d2fa8f270b6",true);
+                        httpRequest.open("GET","https://devapi.qweather.com/v7/weather/now?location=101031500&key=00b38cba828149d1ad759d2fa8f270b6",true);
                         httpRequest.send();
                         httpRequest.onreadystatechange=function(){
                           if(httpRequest.readyState == 4 && httpRequest.status == 200){
@@ -363,8 +363,7 @@
                            var v = parseInt(document.getElementById("wind_speed").value);
                            var RH = parseInt(document.getElementById("relative_humidity").value);
                            var e = RH*6.105/100*Math.exp(17.27*T/(237.15+T));
-                           //var AT = 1.07*T+0.2*e-0.65*v-2.7;
-                           var AT = parseInt(at);
+                           var AT = 1.07*T+0.2*e-0.65*v-2.7;
                            if (AT < 0) document.getElementById("feel_like").innerHTML = AT.toFixed();
                            else document.getElementById("feel_like").innerHTML = AT.toFixed(1);
                            document.getElementById("thickness").innerHTML = (0.61*(25.8-AT)/(1-0.01165*v*v)).toFixed();
